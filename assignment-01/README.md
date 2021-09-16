@@ -44,6 +44,20 @@ Complete the following two katas using TDD. Make sure to follow the TDD mantra, 
 - [Roman Numeral Kata Test](./assignment-01.Tests/RomanNumeralConverterTest.cs)
 - [Roman Numeral Kata Method](./assignment-01/RomanNumeralConverter.cs)
 
+### How to run
+#### 1. Build Docker Image
+```
+docker build -t assignment-01 .
+```
+#### 2. Run Docker Image
+```
+docker run -it --rm assignment-01
+```
+#### Or use dotnet cli
+```
+dotnet test
+```
+
 ## 3. Give your thoughts on TDD
 - What was positive and good about using TDD?
     - I tought more on how the method should be used rather than how it what it does.
