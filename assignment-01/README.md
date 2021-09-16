@@ -48,7 +48,7 @@ Complete the following two katas using TDD. Make sure to follow the TDD mantra, 
 - What was positive and good about using TDD?
     - I tought more on how the method should be used rather than how it what it does.
 - What was annoying or difficult?
-    - To call a method not there cause the Unit test should be written first
+    - To call a method which haven't been created yet, because the Unit test should be written first
 - What surprised you?
     - How short and easy a unit test can be written
 - Did TDD help you write some tests you wouldn’t otherwise have thought of?
