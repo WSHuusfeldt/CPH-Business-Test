@@ -1,6 +1,6 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/windows,macos,linux,dotnetcore,csharp,java,react,angular,visualstudiocode,visualstudio
-# Edit at https://www.toptal.com/developers/gitignore?templates=windows,macos,linux,dotnetcore,csharp,java,react,angular,visualstudiocode,visualstudio
+# Created by https://www.toptal.com/developers/gitignore/api/windows,macos,linux,dotnetcore,csharp,java,react,angular,visualstudiocode,visualstudio,code
+# Edit at https://www.toptal.com/developers/gitignore?templates=windows,macos,linux,dotnetcore,csharp,java,react,angular,visualstudiocode,visualstudio,code
 
 ### Angular ###
 ## Angular ##
@@ -32,6 +32,8 @@ e2e/*.map
 
 # System Files
 .DS_Store/
+
+#!! ERROR: code is undefined. Use list command to see defined gitignore types !!#
 
 ### Csharp ###
 ## Ignore Visual Studio temporary files, build results, and
@@ -716,4 +718,4 @@ $RECYCLE.BIN/
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
 
-# End of https://www.toptal.com/developers/gitignore/api/windows,macos,linux,dotnetcore,csharp,java,react,angular,visualstudiocode,visualstudio
+# End of https://www.toptal.com/developers/gitignore/api/windows,macos,linux,dotnetcore,csharp,java,react,angular,visualstudiocode,visualstudio,code

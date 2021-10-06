@@ -26,11 +26,11 @@ This could propably have been avoided by writing a test, that had meassurements 
 > Complete the following using TDD. Remember the TDD mantra
 
 ### 2.1 String Utility
-- [String Utility Test](./assignment-02.Tests/StringUtilityTest.cs)
+- [String Utility Test](./assignment-02.Test/StringUtilityTest.cs)
 - [String Utility Method](./assignment-02.Program/StringUtility.cs)
 
 ### 2.2 BowlingGame
-- [BowlingGame Test](./assignment-02.Tests/BowlingGameTest.cs)
+- [BowlingGame Test](./assignment-02.Test/BowlingGameTest.cs)
 - [BowlingGame Method](./assignment-02.Program/BowlingGame.cs)
 
 ### How to run
