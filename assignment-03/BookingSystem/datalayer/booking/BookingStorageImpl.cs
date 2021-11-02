@@ -30,9 +30,9 @@ namespace BookingSystem.datalayer.booking
                 {
                     command.Parameters.AddWithValue("@customerId", booking.customerId);
                     command.Parameters.AddWithValue("@employeeId", booking.employeeId);
-                    command.Parameters.AddWithValue("@date", DateTime.Now);
-                    command.Parameters.AddWithValue("@start", new TimeSpan(2, 2, 2));
-                    command.Parameters.AddWithValue("@end", new TimeSpan(3, 3, 3));
+                    command.Parameters.AddWithValue("@date", booking.date);
+                    command.Parameters.AddWithValue("@start", booking.start);
+                    command.Parameters.AddWithValue("@end", booking.end);
                     using (var reader = command.ExecuteReader())
                         while (reader.Read())
                             return reader.GetInt32(0);
