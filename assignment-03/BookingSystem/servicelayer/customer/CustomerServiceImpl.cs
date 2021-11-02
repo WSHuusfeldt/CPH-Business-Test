@@ -1,6 +1,6 @@
 using BookingSystem.datalayer.customer;
 using BookingSystem.dto;
-
+using System;
 namespace BookingSystem.servicelayer.customer
 {
     public class CustomerServiceImpl : CustomerService
@@ -11,7 +11,7 @@ namespace BookingSystem.servicelayer.customer
         {
             this.customerStorage = customerStorage;
         }
-        
+
         public int createCustomer(string firstName, string lastName, DateTime birthdate)
         {
             return customerStorage.createCustomer(new CustomerCreation(firstName, lastName));
@@ -24,7 +24,7 @@ namespace BookingSystem.servicelayer.customer
 
         public List<Customer> getCustomersByFirstName(string firstName)
         {
-            return null;
+            throw new NotImplementedException();
         }
     }
 }

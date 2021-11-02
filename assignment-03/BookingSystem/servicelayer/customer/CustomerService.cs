@@ -1,11 +1,11 @@
 using BookingSystem.dto;
-
+using System;
 namespace BookingSystem.servicelayer.customer
 {
     public interface CustomerService
     {
-        public int createCustomer(string firstName, string lastName, DateTime birthdate);
-        public Customer getCustomerById(int id);
-        public List<Customer> getCustomersByFirstName(string firstName);
+        int createCustomer(string firstName, string lastName, DateTime birthdate);
+        Customer getCustomerById(int id);
+        List<Customer> getCustomersByFirstName(string firstName);
     }
 }

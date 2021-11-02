@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingSystem", "BookingSys
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingSystem.Test", "BookingSystem.Test\BookingSystem.Test.csproj", "{4861268A-DD1D-4746-8B5C-E485122D8B32}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingSystem.IntegrationTest", "BookingSystem.IntegrationTest\BookingSystem.IntegrationTest.csproj", "{29AE42D6-9A18-4D7F-8013-348899F305F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{4861268A-DD1D-4746-8B5C-E485122D8B32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4861268A-DD1D-4746-8B5C-E485122D8B32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4861268A-DD1D-4746-8B5C-E485122D8B32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29AE42D6-9A18-4D7F-8013-348899F305F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29AE42D6-9A18-4D7F-8013-348899F305F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29AE42D6-9A18-4D7F-8013-348899F305F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29AE42D6-9A18-4D7F-8013-348899F305F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

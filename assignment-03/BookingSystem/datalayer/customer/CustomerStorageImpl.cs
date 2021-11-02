@@ -44,13 +44,15 @@ namespace BookingSystem.datalayer.customer
             {
                 connection.Open();
 
-                using (var command = new MySqlCommand("select ID, firstname, lastname from Customers;", connection))
+                using (var command = new MySqlCommand("select ID, firstname, lastname, birthdate, phoneNumber from Customers;", connection))
                 using (var reader = command.ExecuteReader())
                     while (reader.Read())
                         customers.Add(new Customer(
                             reader.GetInt32("ID"),
                             reader.GetString("firstname"),
-                            reader.GetString("lastname")
+                            reader.GetString("lastname"),
+                            reader.GetString("birthdate"),
+                            reader.GetString("phoneNumber")
                         ));
             }
             return customers;
@@ -62,14 +64,17 @@ namespace BookingSystem.datalayer.customer
             {
                 connection.Open();
 
-                using (var command = new MySqlCommand("select ID, firstname, lastname from Customers where id=@id;", connection)) {
+                using (var command = new MySqlCommand("select ID, firstname, lastname, birthdate, phoneNumber from Customers where id=@id;", connection))
+                {
                     command.Parameters.AddWithValue("@id", customerId);
                     using (var reader = command.ExecuteReader())
                         while (reader.Read())
                             return new Customer(
                                 reader.GetInt32("ID"),
                                 reader.GetString("firstname"),
-                                reader.GetString("lastname")
+                                reader.GetString("lastname"),
+                                reader.GetString("birthdate"),
+                                reader.GetString("phoneNumber")
                             );
                 }
             }
