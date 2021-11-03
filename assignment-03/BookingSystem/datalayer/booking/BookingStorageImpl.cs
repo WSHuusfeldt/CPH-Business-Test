@@ -33,9 +33,15 @@ namespace BookingSystem.datalayer.booking
                     command.Parameters.AddWithValue("@date", booking.date);
                     command.Parameters.AddWithValue("@start", booking.start);
                     command.Parameters.AddWithValue("@end", booking.end);
-                    using (var reader = command.ExecuteReader())
-                        while (reader.Read())
-                            return reader.GetInt32(0);
+                    Console.WriteLine(command);
+                    // using (var reader = command.ExecuteReader())
+                    // {
+                    //     while (reader.Read())
+                    //     {
+                    //         Console.WriteLine("hello");
+                    //         id = reader.GetInt32("ID");
+                    //     }
+                    // }
                 }
             }
             return -1;
@@ -75,8 +81,10 @@ namespace BookingSystem.datalayer.booking
                                 reader.GetInt32("customerId"),
                                 reader.GetInt32("employeeId"),
                                 reader.GetDateTime("date"),
-                                TimeSpan.Parse(reader.GetString("start")),
-                                TimeSpan.Parse(reader.GetString("end"))
+                                reader.GetTimeSpan("start"),
+                                reader.GetTimeSpan("end")
+                            // TimeSpan.Parse(reader.GetString("start")),
+                            // TimeSpan.Parse(reader.GetString("end"))
                             ));
                 }
             }
@@ -100,8 +108,8 @@ namespace BookingSystem.datalayer.booking
                                 reader.GetInt32("customerId"),
                                 reader.GetInt32("employeeId"),
                                 reader.GetDateTime("date"),
-                                TimeSpan.Parse(reader.GetString("start")),
-                                TimeSpan.Parse(reader.GetString("end"))
+                                reader.GetTimeSpan("start"),
+                                reader.GetTimeSpan("end")
                             ));
                 }
             }

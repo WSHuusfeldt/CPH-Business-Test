@@ -51,7 +51,7 @@ namespace BookingSystem.datalayer.customer
                             reader.GetInt32("ID"),
                             reader.GetString("firstname"),
                             reader.GetString("lastname"),
-                            reader.GetString("birthdate"),
+                            reader.GetDateTime("birthdate"),
                             reader.GetString("phoneNumber")
                         ));
             }
@@ -73,7 +73,7 @@ namespace BookingSystem.datalayer.customer
                                 reader.GetInt32("ID"),
                                 reader.GetString("firstname"),
                                 reader.GetString("lastname"),
-                                reader.GetString("birthdate"),
+                                reader.GetDateTime("birthdate"),
                                 reader.GetString("phoneNumber")
                             );
                 }

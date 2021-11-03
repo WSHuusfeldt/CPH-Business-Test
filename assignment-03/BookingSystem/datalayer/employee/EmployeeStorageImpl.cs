@@ -50,7 +50,7 @@ namespace BookingSystem.datalayer.employee
                             reader.GetInt32("ID"),
                             reader.GetString("firstname"),
                             reader.GetString("lastname"),
-                            DateTime.Parse(reader.GetString("birthdate"))
+                            reader.GetDateTime("birthdate")
                         );
             }
             return null;
