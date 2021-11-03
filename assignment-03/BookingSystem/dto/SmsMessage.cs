@@ -10,5 +10,17 @@ namespace BookingSystem.dto
             this.recipient = recipient;
             this.message = message;
         }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is SmsMessage message &&
+                   recipient == message.recipient &&
+                   this.message == message.message;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(recipient, message);
+        }
     }
 }

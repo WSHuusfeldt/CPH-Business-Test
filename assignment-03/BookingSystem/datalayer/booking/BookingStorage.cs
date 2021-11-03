@@ -7,5 +7,6 @@ namespace BookingSystem.datalayer.booking
         int createBooking(Booking booking);
         List<Booking> GetBookingsForCustomer(int customerId);
         List<Booking> GetBookingsForEmployee(int employeeId);
+        Booking GetBooking(int bookingId);
     }
 }

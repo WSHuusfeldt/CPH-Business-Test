@@ -7,7 +7,7 @@ namespace BookingSystem.dto
         public string lastName { get; private set; }
         public DateTime? birthday { get; private set; }
 
-        public Employee(int id, string firstName, string lastName, DateTime birthday)
+        public Employee(int id, string firstName, string lastName, DateTime? birthday)
         {
             this.id = id;
             this.firstName = firstName;
@@ -15,5 +15,18 @@ namespace BookingSystem.dto
             this.birthday = birthday;
         }
 
+        public override bool Equals(object? obj)
+        {
+            return obj is Employee employee &&
+                   id == employee.id &&
+                   firstName == employee.firstName &&
+                   lastName == employee.lastName &&
+                   birthday == employee.birthday;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(id, firstName, lastName, birthday);
+        }
     }
 }

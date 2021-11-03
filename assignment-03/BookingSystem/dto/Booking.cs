@@ -18,5 +18,21 @@ namespace BookingSystem.dto
             this.start = start;
             this.end = end;
         }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Booking booking &&
+                   id == booking.id &&
+                   customerId == booking.customerId &&
+                   employeeId == booking.employeeId &&
+                   date == booking.date &&
+                   start.Equals(booking.start) &&
+                   end.Equals(booking.end);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(id, customerId, employeeId, date, start, end);
+        }
     }
 }

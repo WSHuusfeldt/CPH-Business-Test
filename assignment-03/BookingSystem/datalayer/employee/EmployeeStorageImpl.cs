@@ -26,16 +26,14 @@ namespace BookingSystem.datalayer.employee
             {
                 connection.Open();
 
-                using (var command = new MySqlCommand("insert into Employees(firstname, lastname) values (@firstname, @lastname);", connection))
+                using (var command = new MySqlCommand("insert into Employees(firstname, lastname, birthdate) values (@firstname, @lastname, @birthdate); SELECT last_insert_id()", connection))
                 {
                     command.Parameters.AddWithValue("@firstname", employee.firstName);
                     command.Parameters.AddWithValue("@lastname", employee.lastName);
-                    using (var reader = command.ExecuteReader())
-                        while (reader.Read())
-                            return reader.GetInt32(1);
+                    command.Parameters.AddWithValue("@birthdate", employee.birthday);
+                    return (int)(ulong)command.ExecuteScalar();
                 }
             }
-            return -1;
         }
         public Employee getEmployeeById(int employeeId)
         {
@@ -43,15 +41,17 @@ namespace BookingSystem.datalayer.employee
             {
                 connection.Open();
 
-                using (var command = new MySqlCommand("select ID, firstname, lastname, birthdate from Employees;", connection))
-                using (var reader = command.ExecuteReader())
-                    while (reader.Read())
-                        return new Employee(
-                            reader.GetInt32("ID"),
-                            reader.GetString("firstname"),
-                            reader.GetString("lastname"),
-                            reader.GetDateTime("birthdate")
-                        );
+                using (var command = new MySqlCommand("SELECT ID, firstname, lastname, birthdate FROM Employees WHERE ID=@ID;", connection)){
+                    command.Parameters.AddWithValue("@ID", employeeId);
+                    using (var reader = command.ExecuteReader())
+                        while (reader.Read())
+                            return new Employee(
+                                reader.GetInt32("ID"),
+                                reader.GetString("firstname"),
+                                reader.GetString("lastname"),
+                                reader.GetDateTime("birthdate")
+                            );
+                }
             }
             return null;
         }

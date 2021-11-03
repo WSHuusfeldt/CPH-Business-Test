@@ -25,16 +25,13 @@ namespace BookingSystem.datalayer.customer
             {
                 connection.Open();
 
-                using (var command = new MySqlCommand("insert into Customers(firstname, lastname) values (@firstname, @lastname);", connection))
+                using (var command = new MySqlCommand("insert into Customers(firstname, lastname) values (@firstname, @lastname); SELECT last_insert_id()", connection))
                 {
                     command.Parameters.AddWithValue("@firstname", customerToCreate.firstname);
                     command.Parameters.AddWithValue("@lastname", customerToCreate.lastname);
-                    using (var reader = command.ExecuteReader())
-                        while (reader.Read())
-                            return reader.GetInt32(1);
+                    return (int)(ulong)command.ExecuteScalar();
                 }
             }
-            return -1;
         }
 
         public List<Customer> getCustomers()
@@ -47,13 +44,20 @@ namespace BookingSystem.datalayer.customer
                 using (var command = new MySqlCommand("select ID, firstname, lastname, birthdate, phoneNumber from Customers;", connection))
                 using (var reader = command.ExecuteReader())
                     while (reader.Read())
-                        customers.Add(new Customer(
-                            reader.GetInt32("ID"),
-                            reader.GetString("firstname"),
-                            reader.GetString("lastname"),
-                            reader.GetDateTime("birthdate"),
-                            reader.GetString("phoneNumber")
-                        ));
+                        customers.Add(
+                            (reader.GetValue(3) == DBNull.Value) ?
+                             new Customer(
+                                reader.GetInt32("ID"),
+                                reader.GetString("firstname"),
+                                reader.GetString("lastname")
+                            ) : 
+                            new Customer(
+                                reader.GetInt32("ID"),
+                                reader.GetString("firstname"),
+                                reader.GetString("lastname"),
+                                reader.GetDateTime("birthdate"),
+                                reader.GetString("phoneNumber")
+                            ));
             }
             return customers;
         }
@@ -68,14 +72,21 @@ namespace BookingSystem.datalayer.customer
                 {
                     command.Parameters.AddWithValue("@id", customerId);
                     using (var reader = command.ExecuteReader())
-                        while (reader.Read())
-                            return new Customer(
+                        while (reader.Read()){
+                            return (reader.GetValue(3) == DBNull.Value) ?
+                             new Customer(
+                                reader.GetInt32("ID"),
+                                reader.GetString("firstname"),
+                                reader.GetString("lastname")
+                            ) : 
+                            new Customer(
                                 reader.GetInt32("ID"),
                                 reader.GetString("firstname"),
                                 reader.GetString("lastname"),
                                 reader.GetDateTime("birthdate"),
                                 reader.GetString("phoneNumber")
                             );
+                        }
                 }
             }
             return null;

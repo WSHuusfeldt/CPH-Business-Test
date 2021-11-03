@@ -24,45 +24,18 @@ namespace BookingSystem.datalayer.booking
             using (var connection = getConnection())
             {
                 connection.Open();
-                var cmd = new MySqlCommand("set net_write_timeout=999; set net_read_timeout=999;", connection);
-                cmd.ExecuteNonQuery();
-                using (var command = new MySqlCommand("INSERT INTO Bookings (customerId, employeeId, date, start, end) VALUES (@customerId, @employeeId, @date, @start, @end);", connection))
+                Console.WriteLine("Made it here");
+                using (var command = new MySqlCommand("insert into Bookings(customerId, employeeId, date, start, end) values (@customerId, @employeeId, @date, @start, @end); SELECT last_insert_id()", connection))
                 {
                     command.Parameters.AddWithValue("@customerId", booking.customerId);
                     command.Parameters.AddWithValue("@employeeId", booking.employeeId);
                     command.Parameters.AddWithValue("@date", booking.date);
                     command.Parameters.AddWithValue("@start", booking.start);
                     command.Parameters.AddWithValue("@end", booking.end);
-                    Console.WriteLine(command);
-                    // using (var reader = command.ExecuteReader())
-                    // {
-                    //     while (reader.Read())
-                    //     {
-                    //         Console.WriteLine("hello");
-                    //         id = reader.GetInt32("ID");
-                    //     }
-                    // }
+
+                    return (int)(ulong)command.ExecuteScalar();
                 }
             }
-            return -1;
-            // using (var connection = getConnection())
-            // {
-            //     connection.Open();
-            //     Console.WriteLine("Made it here");
-            //     using (var command = new MySqlCommand("insert into Bookings(customerId, employeeId, date, start, end) values (@customerId, @employeeId, @date, @start, @end);", connection))
-            //     {
-            //         command.Parameters.AddWithValue("@customerId", booking.customerId);
-            //         command.Parameters.AddWithValue("@employeeId", booking.employeeId);
-            //         command.Parameters.AddWithValue("@date", booking.date);
-            //         command.Parameters.AddWithValue("@start", booking.start);
-            //         command.Parameters.AddWithValue("@end", booking.end);
-            //         Console.WriteLine("Made it inside using");
-            //         using (var reader = command.ExecuteReader())
-            //             while (reader.Read())
-            //                 return reader.GetInt32(0);
-            //     }
-            // }
-            // return -1;
         }
         public List<Booking> GetBookingsForCustomer(int customerId)
         {
@@ -114,6 +87,28 @@ namespace BookingSystem.datalayer.booking
                 }
             }
             return bookings;
+        }
+
+        public Booking GetBooking(int bookingId) {
+            using (var connection = getConnection())
+            {
+                connection.Open();
+
+                using (var command = new MySqlCommand("SELECT ID, customerId, employeeId, date, start, end FROM Bookings WHERE ID = @ID;", connection))
+                {
+                    command.Parameters.AddWithValue("@ID", bookingId);
+                    using (var reader = command.ExecuteReader())
+                        return reader.Read() ?
+                            new Booking(
+                                reader.GetInt32("ID"),
+                                reader.GetInt32("customerId"),
+                                reader.GetInt32("employeeId"),
+                                reader.GetDateTime("date"),
+                                reader.GetTimeSpan("start"),
+                                reader.GetTimeSpan("end")
+                            ) : null;
+                }
+            }
         }
 
     }
