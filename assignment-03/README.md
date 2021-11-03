@@ -26,6 +26,6 @@ Should something fail, or not be imported correctly, please clean and build
 ## Result
 
 Should look like this: 
-![](/img/passedTest.png)
+![](./img/passedTest.png)
 
 
